@@ -1,14 +1,14 @@
-# Memory Phone
+# 📞 Memory Phone ⏳
 
 An old rotary phone that plays the past. Lift the receiver, dial a year, and hear voice notes from family and friends about that year.
 
-Friends and family can keep adding messages from a simple web page, either straight away or locked until a future date. When something new arrives, the dial tone stutters. Dial `*` to hear it.
+Friends and family can keep adding messages from a simple web page, either straight away or locked until a future date. When something new arrives, the dial tone stutters. Dial `*` to hear it. 📬
 
-I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction rotary phone and a lot of help from AI. The full story, with photos and everything that went wrong, is on Substack: [link]
+I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction rotary phone and a lot of help from AI. 🤖☕ The full story, with photos and everything that went wrong, is on Substack: [link]
 
 ![The dial](photos/01-dial.jpg)
 
-## How it works
+## 🎛️ How it works
 
 | Do this | What happens |
 |---|---|
@@ -19,7 +19,7 @@ I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction
 | Dial a number with nothing on it | "Number not in service" tone |
 | Put the receiver down | Stops |
 
-## What's in here
+## 🗂️ What's in here
 
 | Folder | What it is |
 |---|---|
@@ -38,7 +38,7 @@ I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction
 | `web/app.py` | The recording page, admin page and the API the phone syncs from |
 | `web/DEPLOY.md` | Step-by-step deploy guide for the web app |
 
-## Parts
+## 🛒 Parts
 
 | Part | Notes |
 |---|---|
@@ -50,15 +50,15 @@ I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction
 | Micro USB OTG adapter | Lets the sound card plug into the Pi |
 | 3.5mm audio cable | Cut open and wired to the earpiece |
 | Female jumper wires | So you can plug onto the Pi's pins |
-| Soldering iron, solder, desoldering pump | You will need the pump |
-| Multimeter | Optional, but handy |
+| Soldering iron, solder, desoldering pump | You will need the pump. Trust me 🫠 |
+| Multimeter | Optional, but saves you from guessing 🔍 |
 | 5V phone charger and micro USB cable | Power |
 
-No amplifier needed. The USB sound card drives the earpiece directly.
+No amplifier needed. The USB sound card drives the earpiece directly. 🔊
 
-## Wiring
+## 🔌 Wiring
 
-Disconnect the dial, hook switch and handset from the phone's own circuit board first.
+Disconnect the dial, hook switch and handset from the phone's own circuit board first. ✂️
 
 | Phone wire | Raspberry Pi pin |
 |---|---|
@@ -68,11 +68,13 @@ Disconnect the dial, hook switch and handset from the phone's own circuit board 
 | Dial pulse contact, other wire | Pin 14 (GND) |
 | Earpiece | USB sound card, via the 3.5mm cable: left channel to one earpiece wire, ground to the other |
 
-You only need to solder the pins you use. I did 1, 2, 6, 9, 11, 13, 14, 15, 16, 39 and 40.
+You only need to solder the pins you use. I did 1, 2, 6, 9, 11, 13, 14, 15, 16, 39 and 40. Pin 16 was an accident. 🙃
+
+⚠️ **Don't let solder bridge pins 1 and 2.** That joins 3.3V and 5V and can fry the Pi. Ask me how I know. 🔥
 
 **Finding the right wires.** My dial had three wires. One pair clicks once per pulse (that's the one you want). Another pair stays open for the whole time the dial is turning (called "off-normal", you can ignore it). Run `python3 wire_test.py`, connect a pair, lift the receiver and spin the dial, and watch what it reports.
 
-## Setting up the Pi
+## 🍓 Setting up the Pi
 
 1. **Flash the SD card** with Raspberry Pi Imager. Choose Raspberry Pi OS Lite (64-bit). In the settings, set the hostname to `memoryphone`, the username to `pi`, add your Wi-Fi, and switch on SSH.
 2. **Log in from your laptop** and install what it needs:
@@ -92,7 +94,7 @@ You only need to solder the pins you use. I did 1, 2, 6, 9, 11, 13, 14, 15, 16, 
    ```
    If you hear nothing, run `aplay -l` to find your sound card's name and set `AUDIO_DEVICE` at the top of `phone.py`.
 
-## Adding voice notes
+## 🎙️ Adding voice notes
 
 1. Put the voice notes in `~/memory-phone/raw/`. Start every file name with the year, e.g. `1998 mum.opus`. WhatsApp voice notes work fine.
 2. Convert them:
@@ -105,7 +107,7 @@ You only need to solder the pins you use. I did 1, 2, 6, 9, 11, 13, 14, 15, 16, 
    python3 phone.py --mark-all-heard
    ```
 
-## Run it
+## ▶️ Run it
 
 ```bash
 python3 phone.py
@@ -119,9 +121,9 @@ sudo systemctl enable --now phone
 journalctl -u phone -f     # live log, Ctrl+C to exit
 ```
 
-**No Pi yet?** Test on your laptop with `python3 phone.py --sim`. Type `u` to lift, `1998` to dial, `d` to hang up.
+💻 **No Pi yet?** Test on your laptop with `python3 phone.py --sim`. Type `u` to lift, `1998` to dial, `d` to hang up.
 
-## Troubleshooting
+## 🧯 Troubleshooting
 
 | Problem | Fix |
 |---|---|
@@ -130,10 +132,10 @@ journalctl -u phone -f     # live log, Ctrl+C to exit
 | Digits merge together (dial 12, get 3) | Lower `DIGIT_GAP` to 0.2 |
 | One digit splits into two | Raise `DIGIT_GAP` to 0.4 |
 | It plays before you've finished dialling | Raise `NUMBER_GAP` |
-| Long digits come up one short | Some dials skip a contact. `phone.py` already spots the longer gap and adds the missing pulse |
-| Worked on the desk, dead inside the case | A jumper wire came off. Tape them down before closing it up |
+| Long digits come up one short | Some dials skip a contact. `phone.py` already spots the longer gap and adds the missing pulse. This one cost me hours 😵‍💫 |
+| Worked on the desk, dead inside the case | A jumper wire came off. Tape them down before closing it up 🩹 |
 
-## The web app (optional)
+## 🌐 The web app (optional)
 
 This lets anyone with a private link record a message from their phone or laptop, or upload one, and choose to send it straight away or on a future date. The Pi checks for new messages every hour.
 
@@ -148,9 +150,9 @@ sudo cp sync.service sync.timer /etc/systemd/system/
 sudo systemctl enable --now sync.timer
 ```
 
-Keep `sync.env` and your three keys private. Never commit them.
+🔐 Keep `sync.env` and your three keys private. Never commit them.
 
-## Build photos
+## 📸 Build photos
 
 | | |
 |---|---|
@@ -160,6 +162,8 @@ Keep `sync.env` and your three keys private. Never commit them.
 | ![Jumper wires](photos/09-jumper-wires.jpg) | ![Wires connected](photos/10-wires-connected.jpg) |
 | ![Sound card](photos/11-sound-card.jpg) | ![Wired in](photos/13-wired-in.jpg) |
 
-## License
+## 📜 License
 
-MIT. Build one for someone you love.
+MIT. Build one for someone you love. ❤️
+
+Built between 11:30am and 6am, fuelled by stubbornness and coffee. ☕😴
