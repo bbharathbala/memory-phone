@@ -1,0 +1,12 @@
+# keys and secrets
+*.env
+!sync.env.example
+memory-phone-links.txt
+# audio and local state
+clips/
+raw/
+sounds/
+.heard.json
+__pycache__/
+*.pyc
+.DS_Store

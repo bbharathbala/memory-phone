@@ -1,0 +1,31 @@
+# Change the app name below to something unique, e.g. memory-phone-yourname
+app = "memory-phone-CHANGE-ME"
+primary_region = "sin"   # Singapore
+
+[env]
+  DEFAULT_YEAR = "2026"
+  AUTO_APPROVE = "1"     # "0" = you approve each message on the admin page first
+  FOR_NAME = "Their name"   # who the phone is for
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"    # sleeps when nobody is using it, so you only pay for seconds
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "60s"
+    method = "GET"
+    path = "/healthz"
+    timeout = "5s"
+
+[[mounts]]
+  source = "phone_data"          # the volume that keeps messages safe across restarts
+  destination = "/data"
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1
