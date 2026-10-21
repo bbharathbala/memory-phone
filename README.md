@@ -4,7 +4,7 @@ An old rotary phone that plays the past. Lift the receiver, dial a year, and hea
 
 Friends and family can keep adding messages from a simple web page, either straight away or locked until a future date. When something new arrives, the dial tone stutters. Dial `*` to hear it. 📬
 
-I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction rotary phone and a lot of help from AI. 🤖☕ The full story, with photos and everything that went wrong, is on Substack: [link]
+I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction rotary phone and a lot of help from AI. 🤖☕ The full story, with photos and everything that went wrong, is on Substack: https://bbharathbala.substack.com/p/i-built-my-wife-a-phone-that-only
 
 ![The finished Memory Phone](photos/00-finished-phone.jpg)
 
