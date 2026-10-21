@@ -6,7 +6,7 @@ Friends and family can keep adding messages from a simple web page, either strai
 
 I built this for my wife's birthday with a Raspberry Pi Zero 2 W, a reproduction rotary phone and a lot of help from AI. 🤖☕ The full story, with photos and everything that went wrong, is on Substack: [link]
 
-![The dial](photos/01-dial.jpg)
+![The finished Memory Phone](photos/00-finished-phone.jpg)
 
 ## 🎛️ How it works
 
@@ -156,7 +156,8 @@ sudo systemctl enable --now sync.timer
 
 | | |
 |---|---|
-| ![Opened up](photos/02-opened-up.jpg) | ![Original board](photos/03-original-board.jpg) |
+| ![The dial](photos/01-dial.jpg) | ![Opened up](photos/02-opened-up.jpg) |
+| ![Original board](photos/03-original-board.jpg) | |
 | ![Pi Zero 2 W](photos/04-pi-zero.jpg) | ![Soldering kit](photos/05-soldering-kit.jpg) |
 | ![Header and solder](photos/06-header-and-solder.jpg) | ![Finished joints](photos/08-finished-joints.jpg) |
 | ![Jumper wires](photos/09-jumper-wires.jpg) | ![Wires connected](photos/10-wires-connected.jpg) |
